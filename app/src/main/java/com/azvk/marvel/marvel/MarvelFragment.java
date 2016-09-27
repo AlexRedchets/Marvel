@@ -29,6 +29,8 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
+    private MarvelAdapter adapter;
+
     private static final String TAG = MarvelFragment.class.getSimpleName();
 
     @Override
@@ -54,6 +56,8 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
         recyclerView.setHasFixedSize(true);
         recyclerView.setItemAnimator(new DefaultItemAnimator());
+        adapter = new MarvelAdapter(getContext(), this) ;
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
@@ -69,6 +73,7 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
     @Override
     public void onComplete(MarvelRespond data) {
         Toast.makeText(getActivity(), "DONE!!", Toast.LENGTH_SHORT).show();
+        adapter.updateAdapter(data);
     }
 
     @Override
