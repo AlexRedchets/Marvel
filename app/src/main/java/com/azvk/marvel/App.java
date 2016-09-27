@@ -6,6 +6,7 @@ import com.azvk.marvel.dependencies.AppModule;
 import com.azvk.marvel.dependencies.DaggerNetComponent;
 import com.azvk.marvel.dependencies.NetComponent;
 import com.azvk.marvel.dependencies.NetModule;
+import com.azvk.marvel.marvel.MarvelInterface;
 import com.azvk.marvel.marvel.build.MarvelComponent;
 import com.azvk.marvel.marvel.build.MarvelModule;
 
@@ -20,7 +21,7 @@ public class App extends Application {
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule("https://api.github.com/users/"))
+                .netModule(new NetModule("https://http://gateway.marvel.com/v1/public/"))
                 .build();
 
         //initRealmConfiguration();
@@ -31,7 +32,7 @@ public class App extends Application {
         return marvelComponent;
     }
 
-    public void releaseGitHubComponent(){
+    public void releaseMarvelComponent(){
         marvelComponent = null;
     }
 

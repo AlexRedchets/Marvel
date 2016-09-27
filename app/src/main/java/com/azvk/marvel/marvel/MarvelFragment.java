@@ -8,21 +8,31 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.azvk.marvel.MarvelInterface;
-import com.azvk.marvel.MarvelModel;
+import com.azvk.marvel.App;
 import com.azvk.marvel.R;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.ButterKnife;
 
 public class MarvelFragment extends Fragment implements MarvelInterface.View{
+
+    @Inject
+    MarvelPresenter presenter;
 
     private static final String TAG = MarvelFragment.class.getSimpleName();
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        resolveDependencies();
+    }
+
+    private void resolveDependencies() {
+        ((App)getActivity().getApplicationContext()).getMarvelComponent(this).inject(this);
     }
 
     @Nullable
@@ -37,6 +47,14 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View{
     }
 
     @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        Log.e(TAG, "onViewCreated started");
+        super.onViewCreated(view, savedInstanceState);
+
+        presenter.fetchData();
+    }
+
+    @Override
     public void onComplete(List<MarvelModel> data) {
 
     }
@@ -44,5 +62,11 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View{
     @Override
     public void onError(String message) {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ((App)getActivity().getApplicationContext()).releaseMarvelComponent();
     }
 }

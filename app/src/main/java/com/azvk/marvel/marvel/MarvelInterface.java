@@ -1,4 +1,4 @@
-package com.azvk.marvel;
+package com.azvk.marvel.marvel;
 
 import java.util.List;
 
