@@ -3,6 +3,9 @@ package com.azvk.marvel.marvel;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,16 +14,20 @@ import android.widget.Toast;
 
 import com.azvk.marvel.App;
 import com.azvk.marvel.R;
+import com.azvk.marvel.model.BookModel;
 import com.azvk.marvel.model.MarvelRespond;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MarvelFragment extends Fragment implements MarvelInterface.View{
+public class MarvelFragment extends Fragment implements MarvelInterface.View, MarvelAdapter.ClickListener{
 
     @Inject
     MarvelPresenter presenter;
+    @BindView(R.id.recycler_view)
+    RecyclerView recyclerView;
 
     private static final String TAG = MarvelFragment.class.getSimpleName();
 
@@ -42,6 +49,11 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View{
 
         View view = inflater.inflate(R.layout.fragment_marvel, container, false);
         ButterKnife.bind(this, view);
+
+        recyclerView.setRecycledViewPool(new RecyclerView.RecycledViewPool());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false));
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
 
         return view;
     }
@@ -68,5 +80,10 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View{
     public void onDestroy() {
         super.onDestroy();
         ((App)getActivity().getApplicationContext()).releaseMarvelComponent();
+    }
+
+    @Override
+    public void onClick(BookModel bookModel) {
+        Toast.makeText(getContext(), bookModel.getTitle(), Toast.LENGTH_LONG).show();
     }
 }
