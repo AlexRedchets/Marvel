@@ -21,7 +21,7 @@ public class App extends Application {
 
         netComponent = DaggerNetComponent.builder()
                 .appModule(new AppModule(this))
-                .netModule(new NetModule("https://http://gateway.marvel.com/v1/public/"))
+                .netModule(new NetModule("http://gateway.marvel.com/v1/public/"))
                 .build();
 
         //initRealmConfiguration();

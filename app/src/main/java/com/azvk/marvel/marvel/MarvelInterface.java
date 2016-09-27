@@ -1,12 +1,12 @@
 package com.azvk.marvel.marvel;
 
-import java.util.List;
+import com.azvk.marvel.model.MarvelRespond;
 
 public interface MarvelInterface {
 
     interface View{
 
-        void onComplete(List<MarvelModel> data);
+        void onComplete(MarvelRespond data);
 
         void onError(String message);
     }

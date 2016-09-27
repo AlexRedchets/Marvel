@@ -7,11 +7,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.azvk.marvel.App;
 import com.azvk.marvel.R;
-
-import java.util.List;
+import com.azvk.marvel.model.MarvelRespond;
 
 import javax.inject.Inject;
 
@@ -55,8 +55,8 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View{
     }
 
     @Override
-    public void onComplete(List<MarvelModel> data) {
-
+    public void onComplete(MarvelRespond data) {
+        Toast.makeText(getActivity(), "DONE!!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
