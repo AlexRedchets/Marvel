@@ -4,7 +4,7 @@
     android:id="@+id/activity_marvel"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.azvk.marvel.marvel.MarvelActivity">
+    tools:context="com.azvk.marvel.marvel.ui.MarvelActivity">
     <include
         android:id="@+id/toolbar"
         layout="@layout/toolbar">

@@ -1,5 +1,7 @@
 package com.azvk.marvel.model;
 
+import io.realm.annotations.PrimaryKey;
+
 public class MarvelRespond {
 
     private Data data;

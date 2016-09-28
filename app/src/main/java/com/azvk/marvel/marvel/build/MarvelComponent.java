@@ -1,6 +1,6 @@
 package com.azvk.marvel.marvel.build;
 
-import com.azvk.marvel.marvel.MarvelFragment;
+import com.azvk.marvel.marvel.ui.MarvelFragment;
 
 import dagger.Subcomponent;
 

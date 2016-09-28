@@ -2,8 +2,12 @@ package com.azvk.marvel.model;
 
 import java.util.List;
 
-public class BookModel {
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
+public class BookModel extends RealmObject{
+
+    @PrimaryKey
     private String title;
     private List<Images> images;
 

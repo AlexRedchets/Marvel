@@ -6,9 +6,12 @@ import com.azvk.marvel.dependencies.AppModule;
 import com.azvk.marvel.dependencies.DaggerNetComponent;
 import com.azvk.marvel.dependencies.NetComponent;
 import com.azvk.marvel.dependencies.NetModule;
-import com.azvk.marvel.marvel.MarvelInterface;
+import com.azvk.marvel.marvel.ui.MarvelInterface;
 import com.azvk.marvel.marvel.build.MarvelComponent;
 import com.azvk.marvel.marvel.build.MarvelModule;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class App extends Application {
 
@@ -24,7 +27,7 @@ public class App extends Application {
                 .netModule(new NetModule("http://gateway.marvel.com/v1/public/"))
                 .build();
 
-        //initRealmConfiguration();
+        initRealmConfiguration();
     }
 
     public MarvelComponent getMarvelComponent(MarvelInterface.View view){
@@ -36,12 +39,12 @@ public class App extends Application {
         marvelComponent = null;
     }
 
-    /*private void initRealmConfiguration() {
+    private void initRealmConfiguration() {
         RealmConfiguration realmConfiguration = new RealmConfiguration.Builder(this)
                 .deleteRealmIfMigrationNeeded()
                 .build();
         Realm.setDefaultConfiguration(realmConfiguration);
-    }*/
+    }
 
     public NetComponent getNetComponent(){
         return netComponent;

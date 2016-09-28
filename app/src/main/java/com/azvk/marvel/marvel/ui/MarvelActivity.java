@@ -1,4 +1,4 @@
-package com.azvk.marvel.marvel;
+package com.azvk.marvel.marvel.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

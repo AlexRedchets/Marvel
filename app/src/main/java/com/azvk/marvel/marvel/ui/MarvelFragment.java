@@ -1,12 +1,12 @@
-package com.azvk.marvel.marvel;
+package com.azvk.marvel.marvel.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,15 +15,19 @@ import android.widget.Toast;
 
 import com.azvk.marvel.App;
 import com.azvk.marvel.R;
+import com.azvk.marvel.marvel.MarvelAdapter;
+import com.azvk.marvel.marvel.MarvelPresenter;
 import com.azvk.marvel.model.BookModel;
 import com.azvk.marvel.model.MarvelRespond;
+
+import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class MarvelFragment extends Fragment implements MarvelInterface.View, MarvelAdapter.ClickListener{
+public class MarvelFragment extends Fragment implements MarvelInterface.View, MarvelAdapter.ClickListener {
 
     @Inject
     MarvelPresenter presenter;
@@ -67,12 +71,16 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Log.e(TAG, "onViewCreated started");
         super.onViewCreated(view, savedInstanceState);
-
-        presenter.fetchData();
+        if (savedInstanceState == null){
+            presenter.fetchData();
+        }
+        else{
+            presenter.fetchDataDB();
+        }
     }
 
     @Override
-    public void onComplete(MarvelRespond data) {
+    public void onComplete(List<BookModel> data) {
         Toast.makeText(getActivity(), "DONE!!", Toast.LENGTH_SHORT).show();
         adapter.updateAdapter(data);
     }
@@ -91,5 +99,10 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
     @Override
     public void onClick(BookModel bookModel) {
         Toast.makeText(getContext(), bookModel.getTitle(), Toast.LENGTH_LONG).show();
+
+        MarvelDialogFragment marvelDialogFragment = new MarvelDialogFragment();
+        marvelDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
+        //marvelDialogFragment.setArguments(args);
+        marvelDialogFragment.show(getActivity().getSupportFragmentManager(), "Dialog");
     }
 }

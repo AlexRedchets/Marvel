@@ -14,12 +14,14 @@ import com.azvk.marvel.model.BookModel;
 import com.azvk.marvel.model.MarvelRespond;
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MarvelAdapter extends RecyclerView.Adapter<MarvelAdapter.ViewHolder>{
 
-    private MarvelRespond marvelRespond;
+    private List<BookModel> marvelRespond;
     private Context context;
     private String TAG = MarvelAdapter.class.getSimpleName();
     private ClickListener clickListener;
@@ -29,7 +31,7 @@ public class MarvelAdapter extends RecyclerView.Adapter<MarvelAdapter.ViewHolder
         this.clickListener = clickListener;
     }
 
-    public void updateAdapter(MarvelRespond respond){
+    public void updateAdapter(List<BookModel> respond){
         marvelRespond = respond;
         notifyDataSetChanged();
         Log.i(TAG, "Adapter is updated");
@@ -37,7 +39,7 @@ public class MarvelAdapter extends RecyclerView.Adapter<MarvelAdapter.ViewHolder
 
     @Override
     public int getItemCount() {
-        return marvelRespond != null ? marvelRespond.getData().getResults().size() : 0;
+        return marvelRespond != null ? marvelRespond.size() : 0;
     }
 
     @Override
@@ -54,7 +56,7 @@ public class MarvelAdapter extends RecyclerView.Adapter<MarvelAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        BookModel currentData =  marvelRespond.getData().getResults().get(position);
+        BookModel currentData =  marvelRespond.get(position);
 
         holder.title.setText(currentData.getTitle());
         Picasso.with(context).load(currentData.getImages().get(0).getPath() + ".jpg").into(holder.image);
@@ -77,7 +79,7 @@ public class MarvelAdapter extends RecyclerView.Adapter<MarvelAdapter.ViewHolder
 
         @Override
         public void onClick(View view) {
-            clickListener.onClick(marvelRespond.getData().getResults().get(getAdapterPosition()));
+            clickListener.onClick(marvelRespond.get(getAdapterPosition()));
         }
     }
 

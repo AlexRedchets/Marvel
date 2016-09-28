@@ -1,12 +1,15 @@
-package com.azvk.marvel.marvel;
+package com.azvk.marvel.marvel.ui;
 
+import com.azvk.marvel.model.BookModel;
 import com.azvk.marvel.model.MarvelRespond;
+
+import java.util.List;
 
 public interface MarvelInterface {
 
     interface View{
 
-        void onComplete(MarvelRespond data);
+        void onComplete(List<BookModel> data);
 
         void onError(String message);
     }

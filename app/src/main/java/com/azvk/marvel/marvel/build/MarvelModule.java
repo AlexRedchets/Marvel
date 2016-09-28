@@ -1,6 +1,6 @@
 package com.azvk.marvel.marvel.build;
 
-import com.azvk.marvel.marvel.MarvelInterface;
+import com.azvk.marvel.marvel.ui.MarvelInterface;
 
 import dagger.Module;
 import dagger.Provides;
