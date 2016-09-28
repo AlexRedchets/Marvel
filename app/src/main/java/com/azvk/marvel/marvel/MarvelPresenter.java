@@ -29,7 +29,7 @@ public class MarvelPresenter implements MarvelInterface.Presenter{
 
     @Override
     public void fetchData() {
-        Integer limit = 10;
+        Integer limit = 100;
         long ts = System.currentTimeMillis();
         String hash = DigestUtils.md5Hex(ts + PRIVATE_KEY + API_KEY);
         retrofit.create(MarvelClient.class).getRepos(limit, ts, API_KEY, hash)

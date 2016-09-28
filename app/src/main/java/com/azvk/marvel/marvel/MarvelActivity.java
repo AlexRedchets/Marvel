@@ -2,6 +2,7 @@ package com.azvk.marvel.marvel;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 
 import com.azvk.marvel.R;
@@ -16,9 +17,12 @@ public class MarvelActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_marvel);
 
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
         if (savedInstanceState == null){
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.activity_marvel, new MarvelFragment())
+                    .add(R.id.frame_layout, new MarvelFragment())
                     .commit();
         }
     }
