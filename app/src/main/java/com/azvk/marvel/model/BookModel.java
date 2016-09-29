@@ -5,9 +5,8 @@ import java.util.List;
 import io.realm.RealmObject;
 import io.realm.annotations.PrimaryKey;
 
-public class BookModel extends RealmObject{
+public class BookModel {
 
-    @PrimaryKey
     private String title;
     private List<Images> images;
 

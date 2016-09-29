@@ -43,12 +43,12 @@ public class MarvelPresenter implements MarvelInterface.Presenter{
                 .subscribe(repos -> {
                             Log.e(TAG, "Successfully got data");
 
-                            realm.beginTransaction();
+                            /*realm.beginTransaction();
                             if (realm != null){
                                 realm.deleteAll();
                             }
                             realm.copyToRealmOrUpdate(repos.getData().getResults());
-                            realm.commitTransaction();
+                            realm.commitTransaction();*/
 
                             view.onComplete(repos.getData().getResults());
                         },
@@ -62,6 +62,6 @@ public class MarvelPresenter implements MarvelInterface.Presenter{
     @Override
     public void fetchDataDB() {
         Log.e(TAG, "Getting data from DB");
-        view.onComplete(realm.where(BookModel.class).findAll());
+        //view.onComplete(realm.where(BookModel.class).findAll());
     }
 }

@@ -71,12 +71,8 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         Log.e(TAG, "onViewCreated started");
         super.onViewCreated(view, savedInstanceState);
-        if (savedInstanceState == null){
-            presenter.fetchData();
-        }
-        else{
-            presenter.fetchDataDB();
-        }
+
+        presenter.fetchData();
     }
 
     @Override

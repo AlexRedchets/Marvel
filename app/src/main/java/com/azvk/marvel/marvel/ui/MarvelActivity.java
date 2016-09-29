@@ -1,5 +1,6 @@
 package com.azvk.marvel.marvel.ui;
 
+import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,11 +22,24 @@ public class MarvelActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         if (savedInstanceState == null){
+            Log.e(TAG, "savedInstanceState == null");
             getSupportFragmentManager().beginTransaction()
                     .add(R.id.frame_layout, new MarvelFragment())
                     .commit();
         }
     }
+
+    /*@Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+
+        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
+            setContentView(R.layout.activity_marvel);
+
+        } else {
+            setContentView(R.layout.activity_marvel);
+        }
+    }*/
 
 
 
