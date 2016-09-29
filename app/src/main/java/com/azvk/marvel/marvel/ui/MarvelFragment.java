@@ -99,7 +99,8 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
 
     @Override
     public void onError(String message) {
-
+        Log.i(TAG, message);
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
