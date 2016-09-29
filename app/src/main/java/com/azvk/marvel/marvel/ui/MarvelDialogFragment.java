@@ -63,7 +63,7 @@ public class MarvelDialogFragment extends DialogFragment {
             title.setText(args.getString("title"));
         }
         else{
-            title.setText("No title found");
+            title.setText(R.string.no_title);
         }
 
         //Checking format source
@@ -71,7 +71,7 @@ public class MarvelDialogFragment extends DialogFragment {
             format.setText(args.getString("format"));
         }
         else{
-            format.setText("No format found");
+            format.setText(R.string.no_format);
         }
 
         //Checking pages source
@@ -79,7 +79,7 @@ public class MarvelDialogFragment extends DialogFragment {
             pageCount.setText(String.valueOf(args.getInt("pages")));
         }
         else{
-            pageCount.setText("No pages found");
+            pageCount.setText(R.string.no_pages);
         }
 
         //Checking price source
@@ -87,7 +87,7 @@ public class MarvelDialogFragment extends DialogFragment {
             price.setText("$" + String.valueOf(args.getDouble("price")));
         }
         else{
-            price.setText("No price found");
+            price.setText(R.string.no_price);
         }
 
         //Checking creators source
@@ -95,7 +95,7 @@ public class MarvelDialogFragment extends DialogFragment {
             creators.setText(args.getString("creators"));
         }
         else{
-            creators.setText("No creators found");
+            creators.setText(R.string.no_creators);
         }
 
         return view;

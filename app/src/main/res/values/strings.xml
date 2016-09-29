@@ -6,4 +6,10 @@
     <string name="dialog_price">Price: </string>
     <string name="dialog_creators">Creators: </string>
     <string name="dialog_button">ok</string>
+
+    <string name="no_title">No title found</string>
+    <string name="no_format">No format found</string>
+    <string name="no_pages">No pages found</string>
+    <string name="no_price">No price found</string>
+    <string name="no_creators">No creator found</string>
 </resources>
