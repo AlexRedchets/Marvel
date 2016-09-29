@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Marvel</string>
+    <string name="dialog_title">Title: </string>
+    <string name="dialog_format">Format: </string>
+    <string name="dialog_pagecount">Pages: </string>
+    <string name="dialog_price">Price: </string>
+    <string name="dialog_creators">Creators: </string>
+    <string name="dialog_button">ok</string>
 </resources>

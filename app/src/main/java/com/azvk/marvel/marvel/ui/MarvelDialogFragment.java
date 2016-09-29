@@ -8,16 +8,34 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.azvk.marvel.R;
+import com.azvk.marvel.model.BookModel;
+import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 public class MarvelDialogFragment extends DialogFragment {
 
     @BindView(R.id.dialog_button)
     Button button;
+    @BindView(R.id.dialog_image)
+    ImageView image;
+    @BindView(R.id.dialog_title_input)
+    TextView title;
+    @BindView(R.id.dialog_format_input)
+    TextView format;
+    @BindView(R.id.dialog_pagecount_input)
+    TextView pageCount;
+    @BindView(R.id.dialog_price_input)
+    TextView price;
+    @BindView(R.id.dialog_creators_input)
+    TextView creators;
+
 
     private static final String TAG = MarvelDialogFragment.class.getSimpleName();
 
@@ -34,6 +52,12 @@ public class MarvelDialogFragment extends DialogFragment {
         getDialog().setTitle("Title Sample");
 
         button.setOnClickListener(v -> getDialog().cancel());
+
+        Bundle args = getArguments();
+        Picasso.with(getContext()).load(args.getString("image") + ".jpg").into(image);
+        title.setText(args.getString("title"));
+
+
 
         return view;
     }

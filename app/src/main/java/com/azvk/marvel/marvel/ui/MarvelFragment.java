@@ -72,12 +72,18 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
         Log.e(TAG, "onViewCreated started");
         super.onViewCreated(view, savedInstanceState);
 
-        presenter.fetchData();
+        if (savedInstanceState == null){
+            Log.e(TAG, "savedInstanceState == null");
+            presenter.fetchData();
+        }
+        else{
+            Log.e(TAG, "savedInstanceState NOT null");
+            presenter.fetchDataDB();
+        }
     }
 
     @Override
     public void onComplete(List<BookModel> data) {
-        Toast.makeText(getActivity(), "DONE!!", Toast.LENGTH_SHORT).show();
         adapter.updateAdapter(data);
     }
 
@@ -96,9 +102,17 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
     public void onClick(BookModel bookModel) {
         Toast.makeText(getContext(), bookModel.getTitle(), Toast.LENGTH_LONG).show();
 
+        Bundle args = new Bundle();
+        args.putString("image", bookModel.getImages().get(0).getPath());
+        args.putString("title", bookModel.getTitle());
+        args.putString("format", bookModel.getFormat());
+        args.putInt("pages", bookModel.getPageCount());
+        args.putDouble("price", bookModel.getPrices().get(0).getPrice());
+        args.putString("creators", bookModel.getCreators().getItems().get(0).getName());
+
         MarvelDialogFragment marvelDialogFragment = new MarvelDialogFragment();
         marvelDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
-        //marvelDialogFragment.setArguments(args);
+        marvelDialogFragment.setArguments(args);
         marvelDialogFragment.show(getActivity().getSupportFragmentManager(), "Dialog");
     }
 }
