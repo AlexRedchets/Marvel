@@ -2,7 +2,6 @@ package com.azvk.marvel.marvel.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.annotation.StringDef;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,12 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.azvk.marvel.R;
-import com.azvk.marvel.model.BookModel;
 import com.squareup.picasso.Picasso;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.realm.Realm;
 
 public class MarvelDialogFragment extends DialogFragment {
 

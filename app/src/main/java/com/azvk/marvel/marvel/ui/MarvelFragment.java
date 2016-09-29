@@ -1,5 +1,8 @@
 package com.azvk.marvel.marvel.ui;
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -18,7 +21,6 @@ import com.azvk.marvel.R;
 import com.azvk.marvel.marvel.MarvelAdapter;
 import com.azvk.marvel.marvel.MarvelPresenter;
 import com.azvk.marvel.model.BookModel;
-import com.azvk.marvel.model.MarvelRespond;
 
 import java.util.List;
 
@@ -74,12 +76,20 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
 
         if (savedInstanceState == null){
             Log.e(TAG, "savedInstanceState == null");
-            presenter.fetchData();
+            if (isNetworkAvailable()){
+                presenter.fetchData();
+            }
+            else{
+                //if there is not internet connection
+                Log.i(TAG, "No internet connection");
+                Toast.makeText(getContext(), "No Internet connection. Try later", Toast.LENGTH_LONG).show();
+            }
         }
-        else{
+        else {
             Log.e(TAG, "savedInstanceState NOT null");
             presenter.fetchDataDB();
         }
+
     }
 
     @Override
@@ -126,5 +136,12 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
         marvelDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);
         marvelDialogFragment.setArguments(args);
         marvelDialogFragment.show(getActivity().getSupportFragmentManager(), "Dialog");
+    }
+
+    public boolean isNetworkAvailable() {
+        ConnectivityManager connectivityManager
+                = (ConnectivityManager) getContext().getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo activeNetworkInfo = connectivityManager.getActiveNetworkInfo();
+        return activeNetworkInfo != null && activeNetworkInfo.isConnected();
     }
 }

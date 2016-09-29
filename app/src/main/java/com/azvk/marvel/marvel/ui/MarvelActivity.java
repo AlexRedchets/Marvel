@@ -1,6 +1,5 @@
 package com.azvk.marvel.marvel.ui;
 
-import android.content.res.Configuration;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -28,26 +27,4 @@ public class MarvelActivity extends AppCompatActivity {
                     .commit();
         }
     }
-
-    /*@Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
-
-        if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE) {
-            setContentView(R.layout.activity_marvel);
-
-        } else {
-            setContentView(R.layout.activity_marvel);
-        }
-    }*/
-
-
-
-    /*String stringToHash = timeStamp + privateKey + publicKey;
-        String hash = DigestUtils.md5Hex(stringToHash);
-
-        String url = String.format("http://gateway.marvel.com/v1/public/comics?ts=%d&apikey=%s&hash=%s&limit=%d", timeStamp, publicKey, hash, limit);
-        //String output = new Resty().text(url).toString();
-        Log.i(MarvelActivity.class.getSimpleName(), url);*/
-
 }
