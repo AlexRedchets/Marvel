@@ -100,15 +100,27 @@ public class MarvelFragment extends Fragment implements MarvelInterface.View, Ma
 
     @Override
     public void onClick(BookModel bookModel) {
-        Toast.makeText(getContext(), bookModel.getTitle(), Toast.LENGTH_LONG).show();
 
         Bundle args = new Bundle();
-        args.putString("image", bookModel.getImages().get(0).getPath());
-        args.putString("title", bookModel.getTitle());
-        args.putString("format", bookModel.getFormat());
-        args.putInt("pages", bookModel.getPageCount());
-        args.putDouble("price", bookModel.getPrices().get(0).getPrice());
-        args.putString("creators", bookModel.getCreators().getItems().get(0).getName());
+
+        if (bookModel.getImages() != null){
+            args.putString("image", bookModel.getImages().get(0).getPath());
+        }
+        if (bookModel.getTitle() != null){
+            args.putString("title", bookModel.getTitle());
+        }
+        if (bookModel.getFormat() != null){
+            args.putString("format", bookModel.getFormat());
+        }
+        if (bookModel.getPageCount() != 0){
+            args.putInt("pages", bookModel.getPageCount());
+        }
+        if (bookModel.getPrices().get(0).getPrice() != 0){
+            args.putDouble("price", bookModel.getPrices().get(0).getPrice());
+        }
+        if (bookModel.getCreators().getReturned() != 0){
+            args.putString("creators", bookModel.getCreators().getItems().get(0).getName());
+        }
 
         MarvelDialogFragment marvelDialogFragment = new MarvelDialogFragment();
         marvelDialogFragment.setStyle(DialogFragment.STYLE_NORMAL, R.style.CustomDialog);

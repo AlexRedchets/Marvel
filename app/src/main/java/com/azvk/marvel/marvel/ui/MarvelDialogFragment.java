@@ -2,6 +2,7 @@ package com.azvk.marvel.marvel.ui;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.annotation.StringDef;
 import android.support.v4.app.DialogFragment;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -49,15 +50,56 @@ public class MarvelDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.fragment_dialog, container, false);
         ButterKnife.bind(this, view);
 
-        getDialog().setTitle("Title Sample");
+        getDialog().setTitle("Information");
 
         button.setOnClickListener(v -> getDialog().cancel());
 
         Bundle args = getArguments();
-        Picasso.with(getContext()).load(args.getString("image") + ".jpg").into(image);
-        title.setText(args.getString("title"));
 
+        //Checking image source
+        if (args.containsKey("image")){
+            Picasso.with(getContext()).load(args.getString("image") + ".jpg").into(image);
+        }
 
+        //Checking title source
+        if (args.containsKey("title")){
+            title.setText(args.getString("title"));
+        }
+        else{
+            title.setText("No title found");
+        }
+
+        //Checking format source
+        if (args.containsKey("format")){
+            format.setText(args.getString("format"));
+        }
+        else{
+            format.setText("No format found");
+        }
+
+        //Checking pages source
+        if (args.containsKey("pages")){
+            pageCount.setText(String.valueOf(args.getInt("pages")));
+        }
+        else{
+            pageCount.setText("No pages found");
+        }
+
+        //Checking price source
+        if (args.containsKey("price")){
+            price.setText("$" + String.valueOf(args.getDouble("price")));
+        }
+        else{
+            price.setText("No price found");
+        }
+
+        //Checking creators source
+        if (args.containsKey("creators")){
+            creators.setText(args.getString("creators"));
+        }
+        else{
+            creators.setText("No creators found");
+        }
 
         return view;
     }
